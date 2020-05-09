@@ -1,0 +1,250 @@
+<!--
+	Author:		Brian Mason
+	Date: 		May 5, 2018	
+	Section: 	WEB - 215(N01)
+	Desc:		script for online lesson homepage
+
+	
+-->
+<!--
+	// PHP
+	EMPLOYEE LOGIN - ADMIN ACCOUNT THAT CAN EDIT ALL TABLES.
+	FORMAT TIME() TO DATETIME
+	PAGE FOR EDITING TABLES
+	TOTAL DISPLAY - TOTAL CALCULATION
+	FIX SUBSCRIPTION ON PROFILE PG
+	DISPLAY SUBSCRIPTION LENGTH
+	
+	// CSS
+	INLINE DISPLAY FOR LOGIN, REGISTER, PROFILE, LOGOUT
+-->
+<!DOCTYPE html>
+<?php session_start(); 
+
+	//echo $_SESSION['video'];
+	function samba(){
+		$_SESSION['video'] = 'samba';
+		header("location:  registerLesson.php");
+	}
+	function blues(){
+		$_SESSION['video'] = 'blues';
+		header("location:  registerLesson.php");
+	}
+	function jazz(){
+		$_SESSION['video'] = 'jazz';
+		header("location:  registerLesson.php");
+	}
+	function rock(){
+		$_SESSION['video'] = 'rock';
+		header("location:  registerLesson.php");
+	}
+	function reggae(){
+		$_SESSION['video'] = 'reggae';
+		header("location:  registerLesson.php");
+	}
+	function funk(){
+		$_SESSION['video'] = 'funk';
+		header("location:  registerLesson.php");
+	}
+	if(isset($_GET['video'])) {
+		if($_GET['video'] == 'samba'){
+			samba();
+		} else if($_GET['video'] == 'blues'){
+			blues();
+		} else if($_GET['video'] == 'rock'){
+			rock();
+		} else if($_GET['video'] == 'funk'){
+			funk();
+		} else if($_GET['video'] == 'reggae'){
+			reggae();
+		} else if($_GET['video'] == 'jazz'){
+			jazz();
+		}
+	}
+?>
+<html>
+<head>
+	<title>Brian's Online Drum Lessons</title>
+	<link href="Homepage.css" type="text/css" rel="stylesheet"/>
+
+</head>
+
+<body>
+    <!--divs for styling heading image/content/etc.-->
+	<div class="naviagation">
+	<ul class="nav" >
+		<li><a href="employeeLogin.php">Employee Login</a></li>
+		<li><a href="loginLesson.php">Login</a></li>
+		<li><a href="registerLesson.php">Don't have an account?  Register Here</a></li>
+		<?php
+		if (!empty($_SESSION)) {
+			echo "<li><a href=\"LogoutLessons.php\">Log Out</a></li>"; 
+			echo "<li><a href=\"profile.php\">View Profile</a></li>";
+		}
+		?>
+	</ul>
+	</div>
+	<div class="header">
+		<div class="container">
+			<div class="main">
+				<h1><b>Brian's Online Drum Lessons</b></h1>			
+				<h2>Drum Lessons for every level of player</h2>
+			</div>
+		</div>
+	</div>
+	<!--<div class="enter">
+		<a href="#" class="btn">Enter</a>
+	</div>-->
+	
+	<center><div class="center">
+	At Brian's online lessons, there are lessons to accomodate every level of player.  From basic technique to advanced polyrhythms, we have lessons to meet your needs.
+	</div> </center>
+	
+	<!--<form method="post" action="loginLesson.php" > MAYBE CHANGE TO VIDEOS PAGE
+		<input class="btn" type="submit" value="Login">	   <br>    <br>
+	</form> -->
+	
+	<h3>Featured Lessons:</h3>
+	<div id="back">
+		<div id="lessons">
+			<!--These will be the links to the lesson pages. for the 'bio' page, don't go to the form-->
+			<form method="" action="Registration.php">
+			
+			<a href="Homepage.php?video=samba" >
+				<img src="https://img00.deviantart.net/84e6/i/2008/272/a/8/drum_rudiments_by_brettrick.jpg" alt="hand technique">
+			</a>
+			
+			<a href="Homepage.php?video=blues" >
+				<img src="http://www.authenticdrummer.com/wp-content/uploads/2013/05/Authentic-Drummer-Finger-Control.jpg">
+			</a>
+			<a href="Homepage.php?video=funk">
+				<img src="https://i.pinimg.com/736x/d6/07/bc/d607bc88ea4bcf81dc87f21fb25fdcd2.jpg">
+			</a>
+			<a href="Homepage.php?video=reggae">
+				<img src="http://www.kickstartyourdrumming.com/wp-content/uploads/2016/06/Terry-Bozzio-showing-off-1024x768.jpg">
+			</a>
+			<a href="Homepage.php?video=jazz">
+				<img src="MainPicCropped.jpg">
+			</a>
+			<a href="Homepage.php?video=rock">
+				<img src="http://artdrum.com/IMAGES/LP/Congas/Classic-Congas-Top-Tuning-Vintage-Sunburst.jpg">
+			</a>
+			</form>
+		</div>
+	</div>
+	<!--
+	<div class="subscribe">
+		<a href="#" class="btn">Subscribe</a>
+	</div>-->
+	
+</body>
+
+
+	
+</html>
+
+/////////////////////
+if(!empty($_POST['subscriptionId']) || (!empty($_POST['subscription'])) || (!empty($_POST['price'])) || (!empty($_POST['desc']))){
+		$subIdInsert = mysqli_real_escape_string($db_server, $_POST['subscriptionId']);
+		$subInsert = mysqli_real_escape_string($db_server,$_POST['subscription']);
+		$priceInsert = mysqli_real_escape_string($db_server,$_POST['price']);
+		$descInsert = mysqli_real_escape_string($db_server, $_POST['desc']);
+		$subQuery = "INSERT INTO Subscription (SubscriptionId, Subscription, Price, Description) VALUES ('$subIdInsert', '$subInsert', '$priceInsert', '$descInsert')";
+		$subResult = mysqli_query($db_server, $subQuery);
+		if (!$subResult){
+			die("Table Subscription Insert Failed");
+		}
+	} 
+		
+	
+	if (!empty($_POST['firstName']) || (!empty($_POST['lastName'])) || (!empty($_POST['custId']))){
+		$fNameInsert = mysqli_real_escape_string($db_server, $_POST['firstName']);
+		$lNameInsert = mysqli_real_escape_string($db_server, $_POST['lastName']);
+		$custIdInsert = mysqli_real_escape_string($db_server, $_POST['custId']);
+		$empQuery = "INSERT INTO Employee(FirstName, LastName, CustId) VALUES ('$fNameInsert', '$lNameInsert', '$custIdInsert')";
+		$empResult = mysqli_query($db_server, $empQuery);
+		if(!$empResult) {
+			die("Table Employee Insert Failed");
+		}
+	}
+//
+/* Style for all forms */
+body{
+	background:  rgb(225, 225, 225);
+	background-attachment:  fixed;
+}
+
+table{
+	height: 600px;
+	width:  500px;
+	border:  2px solid gray;
+	border-radius : 5px;
+	padding: 5px 5px 5px 5px  ;
+	position:  center center;
+	background-color:  white;
+	
+}
+
+input[type=text]{
+	width:  100%;
+	padding:  12px 20px;
+	margin:  8px 0px;
+	display:  inline-block;
+	border:  1px solid #ccc;
+	border-radius:  4px;
+	box-sizing:  border-box;
+}
+input[type=submit]{
+	width:  100%;
+	background-color:  #4caf50;
+	color:  white;
+	padding:  14px 20px;
+	
+	border:  none;
+	border-radius:  4px;
+	cursor:  pointer;
+	
+}
+
+tr{
+	color:  #808080;
+	font-family:  sans-serif;
+	font-size:  20px;
+}
+th{
+	
+	position: center center;
+	font-family:  Arial Black, sans-serif;
+	font-size: 20px;
+	text-align:  center;
+	padding-top:  20px;
+	color:  rgb(225,225,225);
+	
+}
+
+.link  a{
+	text-decoration:  none;
+	font-family:  sans-serif;
+	font-size:  18px;
+}
+
+.header{
+	font-family:  Arial Black, sans-serif;
+	font-size: 30px;
+	
+	
+}
+/* button style */
+#sub{
+	font-family:  Arial Black, sans-serif;
+	font-size:  25px;
+	padding:  50px;
+}
+#btn1{
+	width:  100%;
+	opacity:  1.0;
+	margin-top:  10px;
+}
+#menuTitle{
+	padding-top:  10px;
+}

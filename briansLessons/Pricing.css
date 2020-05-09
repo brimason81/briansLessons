@@ -1,0 +1,42 @@
+
+.PricingOptions{
+	text-align: center;
+	
+}
+table {
+	position: center ;
+	margin:  auto;
+	padding-left:  145px;
+}
+p {
+	color: white;
+	width:  500px;
+	margin-top:  100px;
+	font-family:  sans-serif
+}
+h2 {
+	color: white;
+	text-align: center;
+	font-family:  sans-serif;
+}
+h3{
+	color:  white
+}
+body {
+	background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+	url(MainPicCropped.jpg) no-repeat  center;
+	background-size:  cover;
+	height:  auto;
+}	
+tr{
+	display:  inline;
+}
+td{
+	text-align:  center;
+	padding-left: 40px;
+	padding-right: 40px;
+
+}
+td:hover{
+	color:  #FF9F33;
+}

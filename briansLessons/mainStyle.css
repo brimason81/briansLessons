@@ -1,0 +1,88 @@
+/*  Style for all linked pages */
+h1{
+	text-align: center;
+	font-size:  40px;
+	color:  white;
+	font-family:  roboto, sans-serif;
+}
+h2{
+	text-align: center;
+	font-size:  25px;
+	color:  white;
+	font-family:  roboto, sans-serif;
+}
+body{
+	text-align:  center;
+}
+
+.btn{
+	text-align:  center;
+	padding:  50px 100px;
+	background-color:  #FF9F33;
+	color:  white;
+	font-family:  'Raleway', sans-serif;
+	text-transform:  uppercase;
+	font-size:  18px;
+	
+	
+}
+a{
+	text-decoration:  none;
+}
+.header {
+	background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+	url(MainPicCropped.jpg) no-repeat center center;
+	background-size:  cover;
+	height:  600px;
+	margin-bottom: 75px;
+	
+}	
+.container{
+	max-width:  940px;
+	margin:  0 auto;
+	padding: 0 10px;
+}
+
+
+.main{
+	position:  relative;
+	top:  180px;
+}
+#lessons{
+	font-size:  0;
+	width:  936px;
+	margin: 0 auto;
+}
+#lessons a {
+	margin: 2px;
+	border:  4px solid transparent;
+	display:  inline-block;
+	border-radius: 10px;
+}
+	
+#lessons a:hover{
+	border-color:  white;
+	opacity:  .7;
+}
+#lessons img{
+	width:  400px;
+	height:  400px;
+}
+/*  for php output */
+.output{
+	
+	text-align:  center;
+	color:  gray;
+	font-family:  Arial Block, sans-serif;
+	font-size:  25px;
+	padding-left:  100px;
+	padding-right: 100px;
+	padding-top:  25px;
+	padding-bottom:  25px;
+	border:  2px solid gray;
+	margin-top:  75px;
+	margin-left:  300px;
+	height:   100px;
+	width:  500px;
+
+}
