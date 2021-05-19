@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!--
 	Author:		Brian Mason
 	Date:		May 2, 2018
@@ -6,10 +7,6 @@
 -->
 <!DOCTYPE html>
 <?php
-
-	
-	
-	session_start();
 		
 	//echo $_SESSION['video'];
 	$error = "Your password cannot be verified.  Please try again." ;
@@ -51,13 +48,13 @@
 			//echo $salt;
 			$hash = password_hash($_POST['pass'], PASSWORD_BCRYPT, $options);	
 							
-			$query = "INSERT INTO Customer(FirstName, LastName, UserName, Email, Password, Salt) VALUES 
+			$query = "INSERT INTO customer (FirstName, LastName, UserName, Email, Password, Salt) VALUES 
 			('$fName', '$lName', '$userName', '$email', '$hash', '$salt')";
 			$result = mysqli_query($db_server, $query);
 			if (!$result) {
 				die("Database Access Failed");
 			}else {
-				$idQuery = "SELECT CustId FROM Customer WHERE Password = '$hash'";
+				$idQuery = "SELECT CustId FROM customer WHERE Password = '$hash'";
 				$idResult = mysqli_query($db_server, $idQuery);
 				if(!$idResult) {
 					die("Nope");
@@ -80,9 +77,9 @@
 						$todaysDateTime = date_format($todaysDate, "Y/m/d H:i:s"); //this format should work!!
 						
 						$custId = $_SESSION['CustId'];
-						$updateQuery = "UPDATE Customer SET SubscriptionId = '$subscriptionId' WHERE CustId = $custId";
+						$updateQuery = "UPDATE customer SET SubscriptionId = '$subscriptionId' WHERE CustId = $custId";
 						$updateResult = mysqli_query($db_server, $updateQuery);
-						$invoiceQuery = "INSERT INTO Invoice (CustId, InvoiceDate, Total, SubscriptionId) VALUES ('$custId', '$todaysDateTime', '$cost', '$subscriptionId' )";
+						$invoiceQuery = "INSERT INTO invoice (CustId, InvoiceDate, Total, SubscriptionId) VALUES ('$custId', '$todaysDateTime', '$cost', '$subscriptionId' )";
 						$invoiceResult = mysqli_query($db_server, $invoiceQuery);
 						if ((!$updateResult) || (!$invoiceResult)) {
 							die("day pass fail");

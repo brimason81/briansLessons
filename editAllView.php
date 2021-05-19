@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!--
 	Author:		Brian Mason	
 	Date: 		May 5, 2018
@@ -7,7 +8,6 @@
 				a link to adminEdit page.
 -->
 <?php
-	session_start();
 	$admin = 1;
 	// Accessing server
 	require_once "BriansLessonsLogin.php";

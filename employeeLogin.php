@@ -1,5 +1,5 @@
+<?php session_start();
 
-<?php
 // MYSQL - NEED TO ENTER EMPLOYEES INTO DATABASE
 
 // PHP
@@ -37,7 +37,6 @@ if (($fName != "") && ($lName != "") && ($empId != "")) {
 		$row = mysqli_fetch_row($result);
 		for ($i = 0; $i < $rows; $i++){
 			if ($row[0] == $empIdAdmin) {
-				session_start();
 				$_SESSION['firstName'] = "Admin"; 
 				$_SESSION['lastName'] = 'Admin';
 				$_SESSION['empId'] = $empId;
@@ -47,8 +46,7 @@ if (($fName != "") && ($lName != "") && ($empId != "")) {
 				$_SESSION['CustId'] = "";	
 				header("location: profile.php");
 			} else {
-				if (($row[0] == $empId) && ($row[1] == $fName) && ($row[2] == $lName)){
-				session_start();				
+				if (($row[0] == $empId) && ($row[1] == $fName) && ($row[2] == $lName)){				
 				$_SESSION['firstName'] = $fName;
 				$_SESSION['lastName'] = $lName;
 				$_SESSION['empId'] = $empId;

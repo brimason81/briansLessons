@@ -1,3 +1,6 @@
+<?php session_start(); 
+	
+?>
 <!--
 	Author:		Brian Mason	
 	Date:		May 5, 2018
@@ -6,9 +9,7 @@
 				account information
 -->
 <!DOCTYPE html>
-<?php session_start(); 
-	
-?>
+
 	
 
 <html>	
