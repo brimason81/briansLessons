@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 	<!--
 	Author:		Brian Mason
 	Date: 		May 5, 2018	
@@ -19,7 +20,7 @@
 	INLINE DISPLAY FOR LOGIN, REGISTER, PROFILE, LOGOUT
 -->
 <!DOCTYPE html>
-<?php session_start(); 
+<?php 
 
 	//echo $_SESSION['video'];
 	function samba(){
