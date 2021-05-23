@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!--
 	Author:		Brian Mason
 	Date:		May 5, 2018
@@ -7,7 +8,6 @@
 -->
 <!DOCTYPE html> 
 <?php
-	session_start();
 	require_once "BriansLessonsLogin.php";
 	
 	$db_server = mysqli_connect($db_hostname, $db_username, $db_password);
@@ -45,7 +45,9 @@
 					die("Subscription Delete Failed");
 				}else {
 					$_SESSION['editSub'] = "";
-					header("location:  editAllView.php");
+					
+					echo("<script>location.href= 'adminEdit.php';</script>");	
+				//header("location:  editAllView.php");
 				}
 			}
 		} else if ($_SESSION['editSub'] == 'update'){
@@ -64,7 +66,8 @@
 					if(!$updateResult) {
 						die("Subscription Price Update Failed");
 					}else {
-						header("location:  editAllView.php");
+						echo("<script>location.href= 'adminEdit.php';</script>");	
+					//header("location:  editAllView.php");
 					}
 				}
 				if (!empty($_POST['subscription'])) {
@@ -74,7 +77,8 @@
 					if(!$updateResult) {
 						die("Subscription subscription Update Failed");
 					}else {
-						header("location:  editAllView.php");
+						echo("<script>location.href= 'adminEdit.php';</script>");	
+					//header("location:  editAllView.php");
 					}
 				}
 				if (!empty($_POST['desc'])) {
@@ -84,7 +88,8 @@
 					if(!$updateResult) {
 						die("Subscription Description Update Failed");
 					}else {
-						header("location:  editAllView.php");
+						echo("<script>location.href= 'adminEdit.php';</script>");	
+					//header("location:  editAllView.php");
 					}
 				}
 			}	
@@ -103,7 +108,8 @@
 				if(!$insertQuery){
 					die("Subscription Add Failed");
 				}else {
-					header("location:  editAllView.php");
+					echo("<script>location.href= 'adminEdit.php';</script>");	
+				//header("location:  editAllView.php");
 				}
 			}
 		}
