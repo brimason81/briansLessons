@@ -8,6 +8,7 @@
 				a link to adminEdit page.
 -->
 <?php
+	ob_start();
 	$admin = 1;
 	// Accessing server
 	require_once "BriansLessonsLogin.php";
@@ -42,23 +43,39 @@
 	}
 	function addEmp(){
 		$_SESSION['editEmp'] = 'add';
-		header("location:  adminEdit.php");
+		echo("<script>location.href= 'adminEdit.php';</script>");	
+
+		//header("location:  adminEdit.php");
 	}
 	function updateEmp() {
 		$_SESSION['editEmp'] = 'update';
-		header("location:  adminEdit.php");
+		echo("<script>location.href= 'adminEdit.php';</script>");	
+
+		//header("location:  adminEdit.php");
 	}
 	function removeEmp() {
 		$_SESSION['editEmp'] = 'remove';
-		header("location:  adminEdit.php");
+		echo("<script>location.href= 'adminEdit.php';</script>");	
+
+		//header("location:  adminEdit.php");
 	}
 	function addSub(){
 		$_SESSION['editSub'] = 'add';
-		header("location:  adminEdit.php");
+		echo("<script>location.href= 'adminEdit.php';</script>");	
+
+		//header("location:  adminEdit.php");
 	}
 	function updateSub() {
 		$_SESSION['editSub'] = 'update';
-		header("location:  adminEdit.php");
+		// TEST
+		/*if (headers_sent()) {
+			die('redirect failed.');
+		} else {
+			header("location:  adminEdit.php");
+		}
+		*/
+		echo("<script>location.href= 'adminEdit.php';</script>");	
+			
 	}
 	function removeSub() {
 		$_SESSION['editSub'] = 'remove';
@@ -82,7 +99,9 @@
 			removeEmp();
 		} 
 	}
+ob_end_flush();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Admin View/Edit</title>
@@ -101,7 +120,7 @@
 		<th>Subscription</th>
 		<th>Price</th> 
 		<th>Description</th> 
-	<tr/>
+	</tr>
 	<?php
 	while($subscription = mysqli_fetch_assoc($resultSub)){
 		echo "<tr>";
@@ -118,7 +137,7 @@
 		echo "<a href=\"editAllView.php?editSub=remove\">Delete<a>";
 	}
 	?>	
-<table/>
+</table>
 <!--SHOULD BE VIEWABLE AND EDITABLE -->
 <h4>Employee</h4>
 <table width="600" border="1" cellpadding="1" cellspacing="1">
@@ -132,7 +151,7 @@
 		
 		<th>Customer Id</th>
 		
-	<tr/>
+	</tr>
 	<?php
 	while ($employee=mysqli_fetch_assoc($resultEmp)){
 		echo "<tr>";
@@ -149,7 +168,7 @@
 		echo "<a href=\"editAllView.php?editEmp=remove\">Delete<a>";
 	}
 	?>
-<table/>
+</table>
 <!--SHOULD BE VIEWABLE  -->
 <h4>Invoice</h4>
 <table width="600" border="1" cellpadding="1" cellspacing="1">
@@ -159,7 +178,7 @@
 		<th>InvoiceDate</th> 
 		<th>Total</th> 
 		<th>Subscription Id</th> 
-	<tr/>
+	</tr>
 	<?php
 	while($invoice = mysqli_fetch_assoc($resultInvoice)){
 		echo "<tr>";
@@ -172,7 +191,7 @@
 	}
 	?>
 	
-<table/>
+</table>
 <!--SHOULD BE VIEWABLE  -->
 <h4>Customer</h4>
 <table width="600" border="1" cellpadding="1" cellspacing="1">
@@ -184,7 +203,7 @@
 		<th>UserName</th> 
 		<th>Email</th> 
 		<th>Subscription Id</th> 
-	<tr/>
+	</tr>
 	<?php
 	while($customer = mysqli_fetch_assoc($resultCust)){
 		echo "<tr>";
@@ -197,7 +216,7 @@
 		echo "</tr>";
 	}
 	?>
-<table/>
+</table>
 <a href="Homepage.php">Home</a><br>
 <a href="profile.php">Profile</a>
 </form>
